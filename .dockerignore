@@ -1,0 +1,4 @@
+app/ember_env/
+app/__pycache__/
+*.pyc
+.git/
