@@ -7,8 +7,12 @@ from torch.utils.data import DataLoader, TensorDataset
 from torchmetrics.classification import MulticlassAccuracy, BinaryAUROC
 from sklearn.preprocessing import StandardScaler
 from joblib import dump
+from app.env_settings import Settings
 
-data = pd.read_parquet(r"C:\Users\CIOT2026\Documents\Internship\Dataset\Ember\test_ember_2018_v2_features.parquet")
+
+settings = Settings()
+
+data = pd.read_parquet(settings.data_path)
 
 train_val_split = int(0.8*len(data))
 
@@ -20,7 +24,7 @@ y_val = data.iloc[train_val_split:, -1].values
 
 scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)
-dump(scaler, 'model/scaler.bin', compress=True)
+dump(scaler, 'app/model/scaler.bin', compress=True)
 X_val_scaled = scaler.transform(X_val)
 
 

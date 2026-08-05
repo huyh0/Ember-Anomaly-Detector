@@ -4,10 +4,10 @@ import numpy as np
 import lightning as L
 import pandas as pd
 from torch import nn
-from model.train_model import MLP
+from app.model.train_model import MLP
 from joblib import load
 from sklearn.preprocessing import StandardScaler
-from database.postgre_connection import create_table, add_item
+from app.database.postgre_connection import create_table, add_item
 
 def load_scaler(scaler_path):
     scaler = load(scaler_path)

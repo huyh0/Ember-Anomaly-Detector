@@ -2,10 +2,10 @@ from fastapi import FastAPI, Query, HTTPException
 from pydantic import BaseModel, Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from typing import Annotated
-from model.inference import load_scaler, load_model, inference
+from app.model.inference import load_scaler, load_model, inference
 from pathlib import Path
-from env_settings import Settings
-from database.postgre_connection import connection, text
+from app.env_settings import Settings
+from app.database.postgre_connection import connection, text
 import pandas as pd
 from contextlib import asynccontextmanager
 
@@ -40,7 +40,7 @@ def health():
     try:
         with engine.connect() as conn:
             conn.execute(text("SELECT 1"))
-    except SQLAlchemyError:
+    except:
         raise HTTPException(
             status_code=503,
             detail="Postgres Unavailable"

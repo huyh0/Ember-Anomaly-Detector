@@ -1,5 +1,5 @@
 from sqlalchemy import URL, create_engine, text
-from env_settings import Settings
+from app.env_settings import Settings
 
 settings = Settings()
 
@@ -9,7 +9,7 @@ def connection(settings):
         "postgresql+psycopg",
         username=settings.db_username,
         password=settings.db_password,
-        host=settings.db_host,
+        host="postgres-db",
         port=settings.db_port,
         database=settings.db_name
     )
